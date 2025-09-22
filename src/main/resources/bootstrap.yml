@@ -1,0 +1,32 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: 
+    - git
+  cloud:
+    config:
+      server:
+        bootstrap: true
+        git:
+          uri: https://github.com/sumigg/product-config-repo.git
+          search-paths: auth-server, gateway, eureka-server, product-service, product-composite-service, recommendation-service, review-service 
+          default-label: main
+          timeout: 5
+          clone-on-start: true
+          force-pull: true
+  security:
+    user:
+      name: ${CONFIG_SERVER_USR}
+      password: ${CONFIG_SERVER_PWD}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+encrypt:
+  key:  ${CONFIG_SERVER_ENCRYPT_KEY}
