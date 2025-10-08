@@ -30,3 +30,11 @@ management:
 
 encrypt:
   key:  ${CONFIG_SERVER_ENCRYPT_KEY}
+
+
+logging:
+  level:
+    root: INFO
+    se.example: DEBUG
+  # pattern:
+  #   level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"   
